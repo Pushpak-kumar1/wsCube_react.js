@@ -6,9 +6,11 @@ function App() {
 
     let [city, setCity] = useState('');
     let [wDetails, setWdetails] = useState()
+    let [isLoading, setIsLoading] = useState(false)
 
     let getData=(event)=> {
-      fetch(`https://api.openweathermap.org/data/2.5/weather?q=%{city}&appid=751d66e130befad396405dc13796a57c&units=metric`)
+      setIsLoading(true)
+      fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=751d66e130befad396405dc13796a57c&units=metric`)
       .then((res)=> res.json())
       .then((finalRes)=> {
         if (finalRes.cod == "404") {
@@ -16,6 +18,8 @@ function App() {
         } else {
           setWdetails(finalRes)
         }
+
+        setIsLoading(false)
        
       })
 
@@ -33,18 +37,25 @@ function App() {
             <button className='bg-white ml-5'> Submit </button>
           </form>
 
-          <div className='w-[400px] mx-auto bg-white shadow-lg mt-[40px] p-[25px]' >
+          <div className='w-[400px] mx-auto bg-white shadow-lg mt-[40px] p-[25px] relative' >
+
+            <img src='https://media.tenor.com/JBgYqrobdxsAAAAi/loading.gif' width={100} className={`absolute left-[50px] ${isLoading ? '' : 'hidden'} `} /> 
 
             {
              wDetails !== undefined
             ?
               <>
-              <h3 className='font-bold text-[30px]'> {wDetails.name} <span className='bg-[yellow]'>IN</span> </h3>
+              <h3 className='font-bold text-[30px]'> {wDetails.name} 
+                <span className='bg-[yellow]'> {wDetails.sys.country} </span> 
+              </h3>
+
               <h2 className='font-bold text-[40px]'> 
                 {wDetails.main.temp} 
               </h2>
-              <img src="http://openweathermap.org/img/w/50d.png" />
-              <p>Fog</p>
+              <img src={`http://openweathermap.org/img/w/${wDetails.weather[0].icon}.png`} />
+              <p>
+                {wDetails.weather[0].description}
+              </p>
               </>
               :
               "No City Found"
