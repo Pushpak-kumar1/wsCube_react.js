@@ -28,7 +28,7 @@ function App() {
     }
 
     return (
-     <div className='w-[100%] h-[100vh] bg-[#48c0ce]' >
+     <div className='w-[100%] h-[100vh] bg-[#849cb3]' >
         <div className='max-w-[1320px] mx-auto'>
           <h1 className='text-[40px] font-bold py-[50px] text-white'> Simple Weather App </h1>
 
@@ -39,7 +39,7 @@ function App() {
 
           <div className='w-[400px] mx-auto bg-white shadow-lg mt-[40px] p-[25px] relative' >
 
-            <img src='https://media.tenor.com/JBgYqrobdxsAAAAi/loading.gif' width={100} className={`absolute left-[50px] ${isLoading ? '' : 'hidden'} `} /> 
+            <img src='https://c.tenor.com/qXzHf2tesO0AAAAC/loading-gif-steiness.gif' width={100} className={`absolute left-[50%] ${isLoading ? '' : 'hidden'} `} /> 
 
             {
              wDetails !== undefined
