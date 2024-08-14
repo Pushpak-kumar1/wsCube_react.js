@@ -2,3 +2,14 @@
     border: 1px solid rgb(160, 15, 39);
     border-radius: 14px;
 }
+
+.TicketNum {
+    font-size: 3rem;
+}
+
+.Ticket {
+    border: 1px solid white;
+    width: 300px;
+    margin-bottom: 15px;
+    border-radius: 30px;
+}
